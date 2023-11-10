@@ -49,27 +49,6 @@ public class movement : MonoBehaviour
             a.SetBool( "jump", false );
         }
 
-
-        /*if ( !(currentState.fullPathHash == Animator.StringToHash("GetHit01_SwordAndShield")) )
-        {
-            if ( hitted )
-            {
-                a.SetBool( "hit", true );
-            }
-            else
-            {
-                a.SetBool( "hit", false );
-                print( "leave" );
-                hitted = false;
-            }
-        }
-        
-        else
-        {
-            a.SetBool( "hit", false );
-            print( "leave" );
-            hitted = false;
-        }*/
         AnimatorStateInfo currentState = a.GetCurrentAnimatorStateInfo(0);
 
         if (currentState.fullPathHash == hittedState){
@@ -84,6 +63,13 @@ public class movement : MonoBehaviour
 
         dir += Physics.gravity * Time.deltaTime;
         controller.Move(dir * Time.deltaTime);
+
+        // Pasue Game
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameManager.pause();
+        }
+        a.speed = (GameManager.state == GameState.Pause) ? 0 : 1;
     }
 
     void OnTriggerEnter( Collider other )

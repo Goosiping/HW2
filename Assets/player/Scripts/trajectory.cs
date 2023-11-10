@@ -19,7 +19,7 @@ public class trajectory : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         mainCamera = Camera.main;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.lockState = CursorLockMode.Locked;
         //a = GameObject.Find("./MaleCharacterPolyart").GetComponent<Animator>();
     }
 
