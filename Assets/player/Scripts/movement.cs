@@ -12,12 +12,16 @@ public class movement : MonoBehaviour
     Animator a;
     public bool hitted_by_toony = false;
     private int hittedState;
+
+    public int HP;
+
     // Start is called before the first frame update
     void Start()
     {
         controller = GetComponent<CharacterController>();
         a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
         hittedState = Animator.StringToHash("Base Layer.GetHit01_SwordAndShield");
+        HP = 100;
     }
 
     // Update is called once per frame
