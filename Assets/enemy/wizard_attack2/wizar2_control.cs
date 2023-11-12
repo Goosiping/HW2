@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class wizar2_control : MonoBehaviour
+public class wizar2_control : MonoBehaviour, IDestroyable
 {
     GameObject wizar2;
     public Slider blood;
@@ -11,9 +11,15 @@ public class wizar2_control : MonoBehaviour
     float angle = 100.0f;
     float timer = 5;
     float count = 0;
+    Animator a;
+    private int hittedState;
+    GameObject part;
     // Start is called before the first frame update
     void Start()
     {
+        part = GameObject.Find("blue_att");
+        a = gameObject.GetComponent<Animator>();
+        hittedState = Animator.StringToHash("Base Layer.GetHit");
         wizar2 = gameObject;
         Walk();
         blood.value = 1;
@@ -25,8 +31,27 @@ public class wizar2_control : MonoBehaviour
         count = count + Time.deltaTime;
         if ( blood.value > 0 )
         {
-            Turn();
-            Walk();
+
+            AnimatorStateInfo currentState = a.GetCurrentAnimatorStateInfo(0);
+
+            if (currentState.fullPathHash == hittedState){
+                a.SetBool( "hit", false );
+                Turn();
+                Walk();
+            }
+
+            else
+            {
+                Turn();
+                Walk();
+            }
+        }
+
+        else
+        {
+            a.SetBool( "die", true );
+            part.GetComponent<particle_control>().Des();
+            Destroy(gameObject,3);
         }
         
     }
@@ -48,5 +73,12 @@ public class wizar2_control : MonoBehaviour
         v = Vector3.forward * speed;
         wizar2.transform.Translate(v*Time.fixedDeltaTime, Space.Self);
 
+    }
+
+    public void damage(int damage_value)
+    {
+        a.SetBool( "hit", true );
+        float d = (float)damage_value / 100f;
+        blood.value = blood.value - d;
     }
 }

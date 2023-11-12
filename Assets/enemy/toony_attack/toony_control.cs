@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class toony_control : MonoBehaviour
+public class toony_control : MonoBehaviour, IDestroyable
 {
     Animator a;
     GameObject toony;
@@ -13,10 +13,12 @@ public class toony_control : MonoBehaviour
     float angle = 100.0f;
     float timer = 5;
     float count = 0;
-    float attackRange = 2f;
+    float attackRange = 2.5f;
+    private int hittedState;
     // Start is called before the first frame update
     void Start()
     {
+        hittedState = Animator.StringToHash("Base Layer.GetHit");
         toony = gameObject;
         a = GetComponent<Animator>();
         Walk();
@@ -34,9 +36,35 @@ public class toony_control : MonoBehaviour
 
             if ( !isAttack )
             {
-                Turn();
-                Walk();
+                AnimatorStateInfo currentState = a.GetCurrentAnimatorStateInfo(0);
+
+                if (currentState.fullPathHash == hittedState){
+                    a.SetBool( "hit", false );
+                    Turn();
+                    Walk();
+                }
+
+                else
+                {
+                    Turn();
+                    Walk();
+                }
             }
+
+            else
+            {
+                AnimatorStateInfo currentState = a.GetCurrentAnimatorStateInfo(0);
+
+                if (currentState.fullPathHash == hittedState){
+                    a.SetBool( "hit", false );
+                }
+            }
+        }
+
+        else
+        {
+            a.SetBool( "die", true );
+            Destroy(gameObject,3);
         }
     }
 
@@ -78,5 +106,12 @@ public class toony_control : MonoBehaviour
             player.GetComponent<movement>().hitted_by_toony = false;
             return false;
         }
+    }
+
+    public void damage(int damage_value)
+    {
+        a.SetBool( "hit", true );
+        float d = (float)damage_value / 100f;
+        blood.value = blood.value - d;
     }
 }

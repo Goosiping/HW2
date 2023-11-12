@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class boom : MonoBehaviour
+public class boom : MonoBehaviour, IDestroyable
 {
     GameObject boom_obj;
     Animator a;
@@ -86,6 +86,11 @@ public class boom : MonoBehaviour
             booming = true;
         }
         
+    }
+
+    public void damage(int damage_value)
+    {
+        booming = true;
     }
 
 }

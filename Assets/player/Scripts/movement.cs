@@ -12,6 +12,7 @@ public class movement : MonoBehaviour
     Animator a;
     public bool hitted_by_toony = false;
     private int hittedState;
+    float hitCount = 1.0f;
 
     public int HP;
 
@@ -27,6 +28,11 @@ public class movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ( HP <= 0 )
+        {
+            a.SetBool( "die", true );
+        }
+
         if(controller.isGrounded){
             hInput = Input.GetAxis("Horizontal");
             vInput = Input.GetAxis("Vertical");
@@ -60,13 +66,25 @@ public class movement : MonoBehaviour
             a.SetBool( "hit", false );
         }
 
-        if ( hitted_by_toony )
-            a.SetBool( "hit", true );
+        if ( hitted_by_toony && Time.time >= hitCount )
+        {
+            hitCount = Time.time + 1.0f;
+            if ( HP > 0 )
+            {
+                a.SetBool( "hit", true );
+                HP = HP - 5;
+            }
+            else
+            {
+                a.SetBool( "die", true );
+            }
+        }
 
 
 
         dir += Physics.gravity * Time.deltaTime;
         controller.Move(dir * Time.deltaTime);
+
 
         // Pasue Game
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -80,30 +98,80 @@ public class movement : MonoBehaviour
     {
         if ( other.gameObject.name == "little_boom(Clone)" )
         {
+            if ( HP > 0 )
+            {
+                a.SetBool( "hit", true );
+                HP = HP - 5;
+            }
+            else
+            {
+                a.SetBool( "die", true );
+            }
+        }
+
+        else if ( other.gameObject.name == "Heart" )
+        {
+            int temp = HP + 30;
+            Destroy(other.gameObject);
+            if ( temp > 100 )
+            {
+                HP = 100;
+            }
+
+            else
+            {
+                HP = temp;
+            }
+        }
+    }
+
+    void OnTriggerStay( Collider other )
+    {
+
+        if ( other.gameObject.name == "TT_RTS_Demo_Character Variant" && Time.time >= hitCount )
+        {
             //print("hit");
-            a.SetBool( "hit", true );
+            hitCount = Time.time + 1.0f;
+            if ( HP > 0 )
+            {
+                a.SetBool( "hit", true );
+                HP = HP - 5;
+            }
+            else
+            {
+                a.SetBool( "die", true );
+            }
             //hitted = true;
         }
 
-        else if ( other.gameObject.name == "TT_RTS_Demo_Character Variant" )
+        else if ( other.gameObject.name == "PolyArtWizardMaskTintMat Variant" && Time.time >= hitCount )
         {
             //print("hit");
-            a.SetBool( "hit", true );
-            //hitted = true;
+            hitCount = Time.time + 1.0f;
+            if ( HP > 0 )
+            {
+                a.SetBool( "hit", true );
+                HP = HP - 5;
+            }
+            else
+            {
+                a.SetBool( "die", true );
+            }
         }
 
-        else if ( other.gameObject.name == "PolyArtWizardMaskTintMat Variant" )
+        else if ( other.gameObject.name == "PolyArtWizardStandardMat Variant" && Time.time >= hitCount )
         {
             //print("hit");
-            a.SetBool( "hit", true );
-            //hitted = true;
-        }
-
-        else if ( other.gameObject.name == "PolyArtWizardStandardMat Variant" )
-        {
-            //print("hit");
-            a.SetBool( "hit", true );
-            //hitted = true;
+            hitCount = Time.time + 1.0f;
+            if ( HP > 0 )
+            {
+                a.SetBool( "hit", true );
+                HP = HP - 5;
+            }
+            else
+            {
+                a.SetBool( "die", true );
+            }
         }
         
     }
@@ -114,8 +182,15 @@ public class movement : MonoBehaviour
         if ( other.gameObject.name == "blue_att" )
         {
             //print("hit");
-            a.SetBool( "hit", true );
-            //hitted = true;
+            if ( HP > 0 )
+            {
+                a.SetBool( "hit", true );
+                HP = HP - 5;
+            }
+            else
+            {
+                a.SetBool( "die", true );
+            }
         }
     }
 

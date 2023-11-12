@@ -22,4 +22,9 @@ public class particle_control : MonoBehaviour
     {
         print( "pc" );
     }
+
+    public void Des()
+    {
+        Destroy(part);
+    }
 }

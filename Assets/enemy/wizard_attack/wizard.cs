@@ -11,9 +11,13 @@ public class wizard : MonoBehaviour, IDestroyable
     GameObject prefab;
     float timer = 7;
     float count = 0;
+    Animator a;
+    private int hittedState;
     // Start is called before the first frame update
     void Start()
     {
+        a = gameObject.GetComponent<Animator>();
+        hittedState = Animator.StringToHash("Base Layer.GetHit");
         w = gameObject;
         blood.value = 1;
         Vector3 v = new Vector3(w.transform.position.x, w.transform.position.y, w.transform.position.z-1 );
@@ -32,12 +36,25 @@ public class wizard : MonoBehaviour, IDestroyable
                 prefab = Instantiate( little_boom, v, w.transform.rotation );
                 count = 0;
             }
+
+            AnimatorStateInfo currentState = a.GetCurrentAnimatorStateInfo(0);
+
+            if (currentState.fullPathHash == hittedState){
+                a.SetBool( "hit", false );
+            }
+        }
+        else
+        {
+            a.SetBool( "die", true );
+            Destroy(gameObject,3);
         }
         
     }
 
     public void damage(int damage_value)
     {
-        blood.value = blood.value - damage_value;
+        a.SetBool( "hit", true );
+        float d = (float)damage_value / 100f;
+        blood.value = blood.value - d;
     }
 }
