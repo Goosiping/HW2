@@ -15,6 +15,9 @@ public class movement : MonoBehaviour
     float hitCount = 1.0f;
 
     public int HP;
+    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] private GameObject BGM;
+    private AudioSource _audioPlayer;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,7 @@ public class movement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
         hittedState = Animator.StringToHash("Base Layer.GetHit01_SwordAndShield");
+        _audioPlayer = GetComponent<AudioSource>();
         HP = 100;
     }
 
@@ -73,6 +77,7 @@ public class movement : MonoBehaviour
             {
                 a.SetBool( "hit", true );
                 HP = HP - 5;
+                _audioPlayer.PlayOneShot(_hitSound);
             }
             else
             {
@@ -92,6 +97,9 @@ public class movement : MonoBehaviour
             GameManager.pause();
         }
         a.speed = (GameManager.state == GameState.Pause) ? 0 : 1;
+
+        // BGM moving
+        BGM.transform.position = transform.position;
     }
 
     void OnTriggerEnter( Collider other )
@@ -102,6 +110,7 @@ public class movement : MonoBehaviour
             {
                 a.SetBool( "hit", true );
                 HP = HP - 5;
+                _audioPlayer.PlayOneShot(_hitSound);
             }
             else
             {
@@ -136,6 +145,7 @@ public class movement : MonoBehaviour
             {
                 a.SetBool( "hit", true );
                 HP = HP - 5;
+                _audioPlayer.PlayOneShot(_hitSound);
             }
             else
             {
@@ -152,6 +162,7 @@ public class movement : MonoBehaviour
             {
                 a.SetBool( "hit", true );
                 HP = HP - 5;
+                _audioPlayer.PlayOneShot(_hitSound);
             }
             else
             {
@@ -167,6 +178,7 @@ public class movement : MonoBehaviour
             {
                 a.SetBool( "hit", true );
                 HP = HP - 5;
+                _audioPlayer.PlayOneShot(_hitSound);
             }
             else
             {
@@ -186,6 +198,7 @@ public class movement : MonoBehaviour
             {
                 a.SetBool( "hit", true );
                 HP = HP - 5;
+                _audioPlayer.PlayOneShot(_hitSound);
             }
             else
             {

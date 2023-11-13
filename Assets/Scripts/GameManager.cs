@@ -8,9 +8,15 @@ public class GameManager : MonoBehaviour
 
     private string game1Scene = "HW2 - Scene";
     private string menuScene = "Menu";
+    private string game2Scene = "Scene2";
+    private string game3Scene = "Scene3";
 
     private static GameManager instance = null;
+    
     public GameObject pauseCanvas;
+    public GameObject BGM;
+    public AudioSource audioSourceBGM;
+
     //public GameObject player;
     public static GameState state;
     public static float startTime;
@@ -23,6 +29,8 @@ public class GameManager : MonoBehaviour
         state = GameState.Menu;
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(pauseCanvas);
+        DontDestroyOnLoad(BGM);
+        audioSourceBGM = BGM.GetComponent<AudioSource>();
         //SceneManager.LoadScene(menuScene);
         pauseCanvas.SetActive(false);
     }
@@ -40,7 +48,7 @@ public class GameManager : MonoBehaviour
     {
         instance.pauseTime = Time.time;
         state = GameState.Pause;
-
+        instance.audioSourceBGM.Pause();
         Cursor.lockState = CursorLockMode.None;
         instance.pauseCanvas.SetActive(true);
     }
@@ -51,7 +59,7 @@ public class GameManager : MonoBehaviour
         float totalPauseTime = Time.time - instance.pauseTime;
         startTime += totalPauseTime;
         Cursor.lockState = CursorLockMode.Locked;
-        //instance.player.SetActive(true);
+        instance.audioSourceBGM.Play();
     }
     public void startGame()
     {
