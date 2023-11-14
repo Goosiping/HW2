@@ -16,7 +16,7 @@ public class movement : MonoBehaviour
 
     public int HP;
     [SerializeField] private AudioClip _hitSound;
-    [SerializeField] private GameObject BGM;
+    [SerializeField] private AudioClip _healSound;
     private AudioSource _audioPlayer;
 
     // Start is called before the first frame update
@@ -98,8 +98,6 @@ public class movement : MonoBehaviour
         }
         a.speed = (GameManager.state == GameState.Pause) ? 0 : 1;
 
-        // BGM moving
-        BGM.transform.position = transform.position;
     }
 
     void OnTriggerEnter( Collider other )
@@ -125,6 +123,7 @@ public class movement : MonoBehaviour
             if ( temp > 100 )
             {
                 HP = 100;
+                _audioPlayer.PlayOneShot(_healSound);
             }
 
             else

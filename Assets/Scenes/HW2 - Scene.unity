@@ -2072,6 +2072,10 @@ PrefabInstance:
       propertyPath: jumpSpeed
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 9075005127173122715, guid: b9271cb7701593b488f8b5693d5e2a05, type: 3}
+      propertyPath: _healSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 50104bd5995b0204b94f85a2283fc483, type: 3}
     - target: {fileID: 9075005127404646169, guid: b9271cb7701593b488f8b5693d5e2a05, type: 3}
       propertyPath: bullet
       value: 
