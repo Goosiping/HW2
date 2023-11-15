@@ -13,6 +13,7 @@ public class movement : MonoBehaviour
     public bool hitted_by_toony = false;
     private int hittedState;
     float hitCount = 1.0f;
+    GameObject hit_part;
 
     public int HP;
     [SerializeField] private AudioClip _hitSound;
@@ -22,6 +23,7 @@ public class movement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hit_part = GameObject.Find("Hit Effect p");
         controller = GetComponent<CharacterController>();
         a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
         hittedState = Animator.StringToHash("Base Layer.GetHit01_SwordAndShield");
@@ -77,6 +79,7 @@ public class movement : MonoBehaviour
             {
                 a.SetBool( "hit", true );
                 HP = HP - 5;
+                hit_part.GetComponent<ParticleSystem>().Play();
                 _audioPlayer.PlayOneShot(_hitSound);
             }
             else
@@ -108,6 +111,7 @@ public class movement : MonoBehaviour
             {
                 a.SetBool( "hit", true );
                 HP = HP - 5;
+                hit_part.GetComponent<ParticleSystem>().Play();
                 _audioPlayer.PlayOneShot(_hitSound);
             }
             else
@@ -116,7 +120,7 @@ public class movement : MonoBehaviour
             }
         }
 
-        else if ( other.gameObject.name == "Heart" )
+        else if ( other.gameObject.tag == "heart" )
         {
             int temp = HP + 30;
             Destroy(other.gameObject);
@@ -129,6 +133,7 @@ public class movement : MonoBehaviour
             else
             {
                 HP = temp;
+                _audioPlayer.PlayOneShot(_healSound);
             }
         }
 
@@ -141,13 +146,14 @@ public class movement : MonoBehaviour
     void OnTriggerStay( Collider other )
     {
 
-        if ( other.gameObject.name == "TT_RTS_Demo_Character Variant" && Time.time >= hitCount )
+        if ( (other.gameObject.tag == "Enemies") && (Time.time >= hitCount) && (other.gameObject.name != "little_boom(Clone)") )
         {
             //print("hit");
             hitCount = Time.time + 1.0f;
             if ( HP > 0 )
             {
                 a.SetBool( "hit", true );
+                hit_part.GetComponent<ParticleSystem>().Play();
                 HP = HP - 5;
                 _audioPlayer.PlayOneShot(_hitSound);
             }
@@ -158,37 +164,7 @@ public class movement : MonoBehaviour
             //hitted = true;
         }
 
-        else if ( other.gameObject.name == "PolyArtWizardMaskTintMat Variant" && Time.time >= hitCount )
-        {
-            //print("hit");
-            hitCount = Time.time + 1.0f;
-            if ( HP > 0 )
-            {
-                a.SetBool( "hit", true );
-                HP = HP - 5;
-                _audioPlayer.PlayOneShot(_hitSound);
-            }
-            else
-            {
-                a.SetBool( "die", true );
-            }
-        }
-
-        else if ( other.gameObject.name == "PolyArtWizardStandardMat Variant" && Time.time >= hitCount )
-        {
-            //print("hit");
-            hitCount = Time.time + 1.0f;
-            if ( HP > 0 )
-            {
-                a.SetBool( "hit", true );
-                HP = HP - 5;
-                _audioPlayer.PlayOneShot(_hitSound);
-            }
-            else
-            {
-                a.SetBool( "die", true );
-            }
-        }
+        
         
     }
 
@@ -201,6 +177,7 @@ public class movement : MonoBehaviour
             if ( HP > 0 )
             {
                 a.SetBool( "hit", true );
+                hit_part.GetComponent<ParticleSystem>().Play();
                 HP = HP - 5;
                 _audioPlayer.PlayOneShot(_hitSound);
             }

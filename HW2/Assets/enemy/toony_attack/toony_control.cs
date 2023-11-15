@@ -15,10 +15,12 @@ public class toony_control : MonoBehaviour, IDestroyable
     float count = 0;
     float attackRange = 2.5f;
     private int hittedState;
+    GameObject hit_part;
     // Start is called before the first frame update
     void Start()
     {
         hittedState = Animator.StringToHash("Base Layer.GetHit");
+        hit_part = GameObject.Find("Hit Effect3");
         toony = gameObject;
         a = GetComponent<Animator>();
         Walk();
@@ -114,5 +116,6 @@ public class toony_control : MonoBehaviour, IDestroyable
         a.SetBool( "hit", true );
         float d = (float)damage_value / 100f;
         blood.value = blood.value - d;
+        hit_part.GetComponent<ParticleSystem>().Play();
     }
 }

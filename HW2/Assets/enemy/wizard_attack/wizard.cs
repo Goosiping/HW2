@@ -9,6 +9,7 @@ public class wizard : MonoBehaviour, IDestroyable
     public Slider blood;
     GameObject w;
     GameObject prefab;
+    GameObject hit_part;
     float timer = 7;
     float count = 0;
     Animator a;
@@ -17,6 +18,7 @@ public class wizard : MonoBehaviour, IDestroyable
     void Start()
     {
         a = gameObject.GetComponent<Animator>();
+        hit_part = GameObject.Find("Hit Effect");
         hittedState = Animator.StringToHash("Base Layer.GetHit");
         w = gameObject;
         blood.value = 1;
@@ -57,5 +59,6 @@ public class wizard : MonoBehaviour, IDestroyable
         a.SetBool( "hit", true );
         float d = (float)damage_value / 100f;
         blood.value = blood.value - d;
+        hit_part.GetComponent<ParticleSystem>().Play();
     }
 }

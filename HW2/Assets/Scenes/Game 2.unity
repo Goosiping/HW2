@@ -278,7 +278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8385989436748336509, guid: 0efe9fe4fdb2d6743a1d5980de8cc66d, type: 3}
       propertyPath: m_Name
-      value: PolyArtWizardStandardMat Variant
+      value: bombwizard
       objectReference: {fileID: 0}
     - target: {fileID: 8385989436748336509, guid: 0efe9fe4fdb2d6743a1d5980de8cc66d, type: 3}
       propertyPath: m_Layer
@@ -551,7 +551,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4229108200480818993, guid: a84f5b0a89943a244abdcf5398647a5e, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4229108200480818993, guid: a84f5b0a89943a244abdcf5398647a5e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -654,6 +654,10 @@ PrefabInstance:
       propertyPath: my_camera
       value: 
       objectReference: {fileID: 1978336089}
+    - target: {fileID: 5283876066518944325, guid: 3b349ca40c1941a43ae87025b4db0b96, type: 3}
+      propertyPath: m_Name
+      value: Hit Effect3
+      objectReference: {fileID: 0}
     - target: {fileID: 7478286443091595570, guid: 3b349ca40c1941a43ae87025b4db0b96, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -836,7 +840,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7730164578804176840, guid: 3b349ca40c1941a43ae87025b4db0b96, type: 3}
       propertyPath: m_Name
-      value: TT_RTS_Demo_Character Variant
+      value: tony
       objectReference: {fileID: 0}
     - target: {fileID: 7730164578804176840, guid: 3b349ca40c1941a43ae87025b4db0b96, type: 3}
       propertyPath: m_Layer
@@ -933,7 +937,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &759473874
 PrefabInstance:
@@ -1314,7 +1318,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7262939706196120893, guid: 5a70dab5921fdd04fb52b1872a16fae6, type: 3}
       propertyPath: m_Name
-      value: PolyArtWizardMaskTintMat Variant
+      value: wizard
       objectReference: {fileID: 0}
     - target: {fileID: 7262939706196120893, guid: 5a70dab5921fdd04fb52b1872a16fae6, type: 3}
       propertyPath: m_Layer
@@ -1643,6 +1647,10 @@ PrefabInstance:
     - target: {fileID: 1000010714891294, guid: 5a0537415d4017c4fad7a4986f502dc1, type: 3}
       propertyPath: m_Name
       value: Heart
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010714891294, guid: 5a0537415d4017c4fad7a4986f502dc1, type: 3}
+      propertyPath: m_TagString
+      value: heart
       objectReference: {fileID: 0}
     - target: {fileID: 4000013886378248, guid: 5a0537415d4017c4fad7a4986f502dc1, type: 3}
       propertyPath: m_RootOrder

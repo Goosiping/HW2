@@ -14,10 +14,12 @@ public class wizar2_control : MonoBehaviour, IDestroyable
     Animator a;
     private int hittedState;
     GameObject part;
+    GameObject hit_part;
     // Start is called before the first frame update
     void Start()
     {
         part = GameObject.Find("blue_att");
+        hit_part = GameObject.Find("Hit Effect2");
         a = gameObject.GetComponent<Animator>();
         hittedState = Animator.StringToHash("Base Layer.GetHit");
         wizar2 = gameObject;
@@ -81,5 +83,6 @@ public class wizar2_control : MonoBehaviour, IDestroyable
         a.SetBool( "hit", true );
         float d = (float)damage_value / 100f;
         blood.value = blood.value - d;
+        hit_part.GetComponent<ParticleSystem>().Play();
     }
 }
