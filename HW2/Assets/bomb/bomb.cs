@@ -51,7 +51,7 @@ public class bomb : MonoBehaviour, IDestroyable
         //if (is_explode) return;
         //is_explode = true;
         int hits_count = Physics.OverlapSphereNonAlloc(transform.position, explode_radius, hits_collider);  //can add hit_layer as last argument
-        print(transform.position);
+        //print(transform.position);
         for (int i = 0; i < hits_count; i++)
         {
             // dont damage source bomb
@@ -69,7 +69,7 @@ public class bomb : MonoBehaviour, IDestroyable
             //if (Physics.Raycast(transform.position, direction.normalized, distance, block_layer)) continue;
             destroyable.damage(5);  // can be made more flexible if needed
         }
-        print("bomb explode");
+        //print("bomb explode");
 
     }
     
@@ -79,6 +79,7 @@ public class bomb : MonoBehaviour, IDestroyable
         yield return new WaitForSeconds(1f);
         calculate_n_damage();
         yield return new WaitForSeconds(1.2f);
+        GameManager.checkNextStage();
         Destroy(gameObject);
     }
 

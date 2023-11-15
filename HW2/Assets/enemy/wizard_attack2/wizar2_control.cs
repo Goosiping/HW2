@@ -52,6 +52,7 @@ public class wizar2_control : MonoBehaviour, IDestroyable
             a.SetBool( "die", true );
             part.GetComponent<particle_control>().Des();
             Destroy(gameObject,3);
+            GameManager.checkNextStage();
         }
         
     }

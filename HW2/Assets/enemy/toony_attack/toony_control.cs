@@ -65,6 +65,7 @@ public class toony_control : MonoBehaviour, IDestroyable
         {
             a.SetBool( "die", true );
             Destroy(gameObject,3);
+            GameManager.checkNextStage();
         }
     }
 

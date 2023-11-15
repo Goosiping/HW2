@@ -47,6 +47,7 @@ public class wizard : MonoBehaviour, IDestroyable
         {
             a.SetBool( "die", true );
             Destroy(gameObject,3);
+            GameManager.checkNextStage();
         }
         
     }

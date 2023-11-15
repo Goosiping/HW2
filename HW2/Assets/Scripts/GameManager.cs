@@ -6,10 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    private string game1Scene = "Game 1";
+    private string[] gameScenes = { "Game 1", "Game 2", "Game 3", "Final"};
     private string menuScene = "Menu";
-    private string game2Scene = "Game 2";
-    private string game3Scene = "Game 3";
+    private int _currentStage = 0;
 
     private static GameManager instance = null;
     
@@ -17,10 +16,15 @@ public class GameManager : MonoBehaviour
     public GameObject BGM;
     public AudioSource audioSourceBGM;
 
-    //public GameObject player;
+
     public static GameState state;
     public static float startTime;
+    public static float finishTime;
     private float pauseTime;
+
+    // Scene Changes
+    private bool _pass = false;
+    public int previousHP = 100;
 
     // Start is called before the first frame update
     private void Awake()
@@ -63,11 +67,13 @@ public class GameManager : MonoBehaviour
     }
     public void startGame()
     {
+
+        _currentStage = 0;
         state = GameState.Playing;
-        Scene nextScene = SceneManager.GetSceneByName(game1Scene);
-        SceneManager.LoadScene(game1Scene);
+        SceneManager.LoadScene(gameScenes[_currentStage]);
         Cursor.lockState = CursorLockMode.Locked;
         startTime = Time.time;
+        _pass = false;
     }
     public void backToMenu()
     {
@@ -79,6 +85,35 @@ public class GameManager : MonoBehaviour
     public void exit()
     {
         Application.Quit();
+    }
+    public static void checkNextStage()
+    {
+        instance.Invoke("_check", 5);
+        
+    }
+    private void _check()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
+        if(enemies.Length == 0)
+        {
+            _pass = true;
+        }
+    }
+    public static bool isPass()
+    {
+        return instance._pass;
+    }
+    public static void nextStage(int playerHP)
+    {
+        instance._currentStage += 1;
+        instance.previousHP = playerHP;
+        SceneManager.LoadScene(instance.gameScenes[instance._currentStage]);
+        instance._pass = false;
+        if(instance._currentStage == instance.gameScenes.Length - 1)
+        {
+            finishTime = Time.time;
+            print(finishTime);
+        }
     }
 }
 

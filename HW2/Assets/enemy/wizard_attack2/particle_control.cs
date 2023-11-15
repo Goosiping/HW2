@@ -20,7 +20,7 @@ public class particle_control : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        print( "pc" );
+        //print( "pc" );
     }
 
     public void Des()

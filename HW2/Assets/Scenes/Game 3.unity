@@ -146,6 +146,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2398841861220310450, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8428005123704344226, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
       propertyPath: m_Name
       value: Field III
@@ -194,6 +198,38 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8428005124154728161, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 17.642475
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428005124154728161, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -7.1579456
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428005124154728161, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 72.0773
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428005124154728161, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9585659
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428005124154728161, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.04922535
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428005124154728161, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.28021622
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428005124154728161, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.01439612
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428005124154728162, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+      propertyPath: m_TargetTexture
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8428005124828284236, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
       propertyPath: m_TargetTexture
       value: 
@@ -228,6 +264,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+--- !u!1 &144078822 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9061311882846038375, guid: c0d331b4736bb3048b77ebaea72db8a8, type: 3}
+  m_PrefabInstance: {fileID: 144078821}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &144078823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 144078822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ada43740dad5e4a82e830810d4e774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &280929281 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000010714891294, guid: 5a0537415d4017c4fad7a4986f502dc1, type: 3}

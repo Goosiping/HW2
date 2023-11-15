@@ -211,8 +211,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106146038278956889}
-  m_LocalRotation: {x: -0.7068252, y: -0.0000000026352267, z: -0.000000002633129,
-    w: 0.7073883}
+  m_LocalRotation: {x: -0.7068252, y: -0.0000000026352267, z: -0.000000002633129, w: 0.7073883}
   m_LocalPosition: {x: -0.024149608, y: 0.000000002980232, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10219,8 +10218,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106146038518433228}
-  m_LocalRotation: {x: -0.0000000010180965, y: -0.0000000038461447, z: 0.09983342,
-    w: 0.9950042}
+  m_LocalRotation: {x: -0.0000000010180965, y: -0.0000000038461447, z: 0.09983342, w: 0.9950042}
   m_LocalPosition: {x: -0.012610769, y: 0, z: -0.000000011920928}
   m_LocalScale: {x: 1.0000001, y: 0.99999994, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -15336,8 +15334,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106146038873931114}
-  m_LocalRotation: {x: 0.000000073511245, y: -0.000000041249596, z: 0.00000002980232,
-    w: 1}
+  m_LocalRotation: {x: 0.000000073511245, y: -0.000000041249596, z: 0.00000002980232, w: 1}
   m_LocalPosition: {x: 0.000000044703473, y: -0.0000000064261245, z: 0.00000004450176}
   m_LocalScale: {x: 0.9999996, y: 0.99999905, z: 0.9999995}
   m_ConstrainProportionsScale: 0
@@ -20392,8 +20389,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106146039285860081}
-  m_LocalRotation: {x: -0.00000007066796, y: 0.000000033815102, z: -0.000000014901158,
-    w: 1}
+  m_LocalRotation: {x: -0.00000007066796, y: 0.000000033815102, z: -0.000000014901158, w: 1}
   m_LocalPosition: {x: -0.039, y: -0.012, z: 0}
   m_LocalScale: {x: 0.8333335, y: 0.83333397, z: 0.83333385}
   m_ConstrainProportionsScale: 0
@@ -35099,7 +35095,7 @@ GameObject:
   - component: {fileID: 1106146039735007210}
   m_Layer: 0
   m_Name: little_boom
-  m_TagString: Untagged
+  m_TagString: Enemies
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35168,7 +35164,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b507f50350da0c8449c071a2ade73096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  booming: 0
 --- !u!195 &1106146039735007210
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -35393,8 +35388,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1106146040003070926}
-  m_LocalRotation: {x: -4.656613e-10, y: -0.0000000037252903, z: -0.0000000037252903,
-    w: 1}
+  m_LocalRotation: {x: -4.656613e-10, y: -0.0000000037252903, z: -0.0000000037252903, w: 1}
   m_LocalPosition: {x: -0.00688014, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

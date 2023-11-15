@@ -131,6 +131,11 @@ public class movement : MonoBehaviour
                 HP = temp;
             }
         }
+
+        else if(other.gameObject.name == "door")
+        {
+            GameManager.nextStage(HP);
+        }
     }
 
     void OnTriggerStay( Collider other )
@@ -189,7 +194,7 @@ public class movement : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        print( "pc2" );
+        //print( "pc2" );
         if ( other.gameObject.name == "blue_att" )
         {
             //print("hit");
@@ -206,5 +211,5 @@ public class movement : MonoBehaviour
         }
     }
 
-    
+
 }

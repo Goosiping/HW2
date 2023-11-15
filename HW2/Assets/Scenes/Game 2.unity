@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: dc38cd3361e4a3945a7b04b00e36a2af, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 73a83446485035c48a661a9cf6e6dbf7, type: 2}
 --- !u!114 &25242417 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2707926933640079845, guid: a84f5b0a89943a244abdcf5398647a5e, type: 3}
@@ -1610,8 +1610,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Field II
       objectReference: {fileID: 0}
+    - target: {fileID: 5039292406388263591, guid: 960eb877c00af894b8edd75fe0b0ea5d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 960eb877c00af894b8edd75fe0b0ea5d, type: 3}
+--- !u!1 &1273496117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1829995740153740914, guid: 960eb877c00af894b8edd75fe0b0ea5d, type: 3}
+  m_PrefabInstance: {fileID: 1273496116}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1273496118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1273496117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8ada43740dad5e4a82e830810d4e774, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1317361929
 PrefabInstance:
   m_ObjectHideFlags: 0
