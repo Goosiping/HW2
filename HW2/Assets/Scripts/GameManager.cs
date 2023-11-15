@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject pauseCanvas;
     public GameObject BGM;
     public AudioSource audioSourceBGM;
-
+    public GameObject gameOverCanvas;
 
     public static GameState state;
     public static float startTime;
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     // Scene Changes
     private bool _pass = false;
-    public int previousHP = 100;
+    public static int previousHP = 100;
 
     // Start is called before the first frame update
     private void Awake()
@@ -33,10 +33,13 @@ public class GameManager : MonoBehaviour
         state = GameState.Menu;
         DontDestroyOnLoad(gameObject);
         DontDestroyOnLoad(pauseCanvas);
+        DontDestroyOnLoad(gameOverCanvas);
         DontDestroyOnLoad(BGM);
         audioSourceBGM = BGM.GetComponent<AudioSource>();
         //SceneManager.LoadScene(menuScene);
         pauseCanvas.SetActive(false);
+        gameOverCanvas.SetActive(false);
+        previousHP = 100;
     }
     void Start()
     {
@@ -50,6 +53,7 @@ public class GameManager : MonoBehaviour
     }
     public static void pause()
     {
+        Time.timeScale = 0;
         instance.pauseTime = Time.time;
         state = GameState.Pause;
         instance.audioSourceBGM.Pause();
@@ -58,6 +62,7 @@ public class GameManager : MonoBehaviour
     }
     public static void resume()
     {
+        Time.timeScale = 1;
         state = GameState.Playing;
         instance.pauseCanvas.SetActive(false);
         float totalPauseTime = Time.time - instance.pauseTime;
@@ -77,6 +82,7 @@ public class GameManager : MonoBehaviour
     }
     public void backToMenu()
     {
+        Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.None;
         state = GameState.Menu;
         SceneManager.LoadScene(menuScene);
@@ -106,7 +112,7 @@ public class GameManager : MonoBehaviour
     public static void nextStage(int playerHP)
     {
         instance._currentStage += 1;
-        instance.previousHP = playerHP;
+        //instance.previousHP = playerHP;
         SceneManager.LoadScene(instance.gameScenes[instance._currentStage]);
         instance._pass = false;
         if(instance._currentStage == instance.gameScenes.Length - 1)
@@ -114,6 +120,20 @@ public class GameManager : MonoBehaviour
             finishTime = Time.time;
             print(finishTime);
         }
+    }
+    public static void gameOver(){
+        instance.gameOverCanvas.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        //Time.timeScale = 0;
+    }
+    public void restartGame(){
+        //Time.timeScale = 1;
+        //Cursor.lockState = CursorLockMode.Locked;
+        Destroy(BGM);
+        Destroy(gameOverCanvas);
+        Destroy(pauseCanvas);
+        Destroy(gameObject);
+        SceneManager.LoadScene(menuScene);
     }
 }
 

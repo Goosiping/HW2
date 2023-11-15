@@ -14,6 +14,7 @@ public class movement : MonoBehaviour
     private int hittedState;
     float hitCount = 1.0f;
     GameObject hit_part;
+    bool isdead = false;
 
     public int HP;
     [SerializeField] private AudioClip _hitSound;
@@ -28,15 +29,18 @@ public class movement : MonoBehaviour
         a = GameObject.Find("MaleCharacterPolyart").GetComponent<Animator>();
         hittedState = Animator.StringToHash("Base Layer.GetHit01_SwordAndShield");
         _audioPlayer = GetComponent<AudioSource>();
-        HP = 100;
+        //HP = 100;
+        HP = GameManager.previousHP;
     }
 
     // Update is called once per frame
     void Update()
     {
+        GameManager.previousHP = HP;
         if ( HP <= 0 )
         {
             a.SetBool( "die", true );
+            isdead = true;
         }
 
         if(controller.isGrounded){
@@ -85,6 +89,7 @@ public class movement : MonoBehaviour
             else
             {
                 a.SetBool( "die", true );
+                isdead = true;
             }
         }
 
@@ -100,6 +105,17 @@ public class movement : MonoBehaviour
             GameManager.pause();
         }
         a.speed = (GameManager.state == GameState.Pause) ? 0 : 1;
+
+        // check for y position
+        if (transform.position.y <= -10){
+            isdead = true;
+        }
+
+        // if dead
+        if (isdead) {
+            gameObject.GetComponent<movement>().enabled = false;
+            GameManager.gameOver();
+        }
 
     }
 
@@ -117,6 +133,7 @@ public class movement : MonoBehaviour
             else
             {
                 a.SetBool( "die", true );
+                isdead = true;
             }
         }
 
@@ -160,6 +177,7 @@ public class movement : MonoBehaviour
             else
             {
                 a.SetBool( "die", true );
+                isdead = true;
             }
             //hitted = true;
         }
@@ -184,6 +202,7 @@ public class movement : MonoBehaviour
             else
             {
                 a.SetBool( "die", true );
+                isdead = true;
             }
         }
     }
