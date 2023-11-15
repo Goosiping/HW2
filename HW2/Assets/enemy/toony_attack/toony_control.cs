@@ -16,6 +16,9 @@ public class toony_control : MonoBehaviour, IDestroyable
     float attackRange = 2.5f;
     private int hittedState;
     GameObject hit_part;
+    [SerializeField] private AudioClip _hitSound;
+    private AudioSource _audioPlayer;
+    bool die = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class toony_control : MonoBehaviour, IDestroyable
         a = GetComponent<Animator>();
         Walk();
         blood.value = 1;
+        _audioPlayer = GetComponent<AudioSource>();
         
     }
 
@@ -65,6 +69,7 @@ public class toony_control : MonoBehaviour, IDestroyable
 
         else
         {
+            die = true;
             a.SetBool( "die", true );
             Destroy(gameObject,3);
             GameManager.checkNextStage();
@@ -113,9 +118,13 @@ public class toony_control : MonoBehaviour, IDestroyable
 
     public void damage(int damage_value)
     {
-        a.SetBool( "hit", true );
-        float d = (float)damage_value / 100f;
-        blood.value = blood.value - d;
-        hit_part.GetComponent<ParticleSystem>().Play();
+        if ( die == false )
+        {
+            a.SetBool( "hit", true );
+            float d = (float)damage_value / 100f;
+            blood.value = blood.value - d;
+            hit_part.GetComponent<ParticleSystem>().Play();
+            _audioPlayer.PlayOneShot(_hitSound);
+        }
     }
 }

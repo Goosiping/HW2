@@ -14,6 +14,9 @@ public class wizard : MonoBehaviour, IDestroyable
     float count = 0;
     Animator a;
     private int hittedState;
+    [SerializeField] private AudioClip _hitSound;
+    private AudioSource _audioPlayer;
+    bool die = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class wizard : MonoBehaviour, IDestroyable
         blood.value = 1;
         Vector3 v = new Vector3(w.transform.position.x, w.transform.position.y, w.transform.position.z-1 );
         prefab = Instantiate( little_boom, v, w.transform.rotation );
+        _audioPlayer = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -47,6 +51,7 @@ public class wizard : MonoBehaviour, IDestroyable
         }
         else
         {
+            die = true;
             a.SetBool( "die", true );
             Destroy(gameObject,3);
             GameManager.checkNextStage();
@@ -56,9 +61,13 @@ public class wizard : MonoBehaviour, IDestroyable
 
     public void damage(int damage_value)
     {
-        a.SetBool( "hit", true );
-        float d = (float)damage_value / 100f;
-        blood.value = blood.value - d;
-        hit_part.GetComponent<ParticleSystem>().Play();
+        if ( die == false )
+        {
+            a.SetBool( "hit", true );
+            float d = (float)damage_value / 100f;
+            blood.value = blood.value - d;
+            hit_part.GetComponent<ParticleSystem>().Play();
+            _audioPlayer.PlayOneShot(_hitSound);
+        }
     }
 }

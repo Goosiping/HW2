@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class bomb : MonoBehaviour, IDestroyable
 {
-    private int max_hits = 25;
+    private int max_hits = 300;
     private float explode_radius = 5f;
     private Collider[] hits_collider;
     private Coroutine explode_coroutine;
