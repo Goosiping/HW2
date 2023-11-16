@@ -122,7 +122,7 @@ public class GameManager : MonoBehaviour
         instance._pass = false;
         if(instance._currentStage == instance.gameScenes.Length - 1)
         {
-            finishTime = Time.time;
+            finishTime = Time.time - startTime;
             Cursor.lockState = CursorLockMode.None;
         }
     }
