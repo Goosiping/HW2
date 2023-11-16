@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    private string[] gameScenes = { "Game 1", "Game 2", "Game 3", "Final"};
+    private string[] gameScenes = { "Game 1", "Final"};
     private string menuScene = "Menu";
     private int _currentStage = 0;
 
     private static GameManager instance = null;
-    
+
     public GameObject pauseCanvas;
     public GameObject BGM;
-    public AudioSource audioSourceBGM;
+    public static AudioSource audioSourceBGM;
 
 
     public static GameState state;
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
     {
         instance.pauseTime = Time.time;
         state = GameState.Pause;
-        instance.audioSourceBGM.Pause();
+        audioSourceBGM.Pause();
         Cursor.lockState = CursorLockMode.None;
         instance.pauseCanvas.SetActive(true);
     }
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         float totalPauseTime = Time.time - instance.pauseTime;
         startTime += totalPauseTime;
         Cursor.lockState = CursorLockMode.Locked;
-        instance.audioSourceBGM.Play();
+        audioSourceBGM.Play();
     }
     public void startGame()
     {
@@ -75,11 +75,11 @@ public class GameManager : MonoBehaviour
         startTime = Time.time;
         _pass = false;
     }
-    public void backToMenu()
+    public static void backToMenu()
     {
         Cursor.lockState = CursorLockMode.None;
         state = GameState.Menu;
-        SceneManager.LoadScene(menuScene);
+        SceneManager.LoadScene(instance.menuScene);
         instance.pauseCanvas.SetActive(false);
     }
     public void exit()
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
         if(instance._currentStage == instance.gameScenes.Length - 1)
         {
             finishTime = Time.time;
-            print(finishTime);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
