@@ -11,11 +11,16 @@ public class GameManager : MonoBehaviour
     private int _currentStage = 0;
 
     private static GameManager instance = null;
-    
+
     public GameObject pauseCanvas;
     public GameObject BGM;
-    public AudioSource audioSourceBGM;
+//<<<<<<< HEAD
+    //public AudioSource audioSourceBGM;
     public GameObject gameOverCanvas;
+//=======
+    public static AudioSource audioSourceBGM;
+
+//>>>>>>> c153a54b427befca63c9fe76519ceb6ed4a74238
 
     public static GameState state;
     public static float startTime;
@@ -56,7 +61,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         instance.pauseTime = Time.time;
         state = GameState.Pause;
-        instance.audioSourceBGM.Pause();
+        audioSourceBGM.Pause();
         Cursor.lockState = CursorLockMode.None;
         instance.pauseCanvas.SetActive(true);
     }
@@ -68,7 +73,7 @@ public class GameManager : MonoBehaviour
         float totalPauseTime = Time.time - instance.pauseTime;
         startTime += totalPauseTime;
         Cursor.lockState = CursorLockMode.Locked;
-        instance.audioSourceBGM.Play();
+        audioSourceBGM.Play();
     }
     public void startGame()
     {
@@ -80,12 +85,12 @@ public class GameManager : MonoBehaviour
         startTime = Time.time;
         _pass = false;
     }
-    public void backToMenu()
+    public static void backToMenu()
     {
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.None;
         state = GameState.Menu;
-        SceneManager.LoadScene(menuScene);
+        SceneManager.LoadScene(instance.menuScene);
         instance.pauseCanvas.SetActive(false);
     }
     public void exit()
@@ -118,7 +123,7 @@ public class GameManager : MonoBehaviour
         if(instance._currentStage == instance.gameScenes.Length - 1)
         {
             finishTime = Time.time;
-            print(finishTime);
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     public static void gameOver(){
