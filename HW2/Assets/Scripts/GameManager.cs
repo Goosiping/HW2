@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
-    private string[] gameScenes = { "Game 1", "Final"};
+    private string[] gameScenes = { "Game 1", "Game 2", "Game 3", "Final"};
     private string menuScene = "Menu";
     private int _currentStage = 0;
 
